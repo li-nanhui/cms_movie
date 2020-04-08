@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linh.apps.cms_movie.dao.extend.CommentExtendMapper">
+  <select id="selectByMovieId" parameterType="long" resultType="com.linh.apps.cms_movie.bean.Comment">
+    SELECT *
+    FROM cms_comment
+    where movie_id = #{movie_id,jdbcType=BIGINT}
+  </select>
+
+</mapper>

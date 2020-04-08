@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linh.apps.cms_movie.dao.extend.UserExtendMapper">
+  <select id="selectById" resultMap="UserExtendResultMap">
+    select *
+    from cms_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="UserExtendResultMap">
+    select *
+    from cms_user
+  </select>
+  <resultMap id="UserExtendResultMap"
+             type="com.linh.apps.cms_movie.bean.extend.UserExtend"
+             extends="com.linh.apps.cms_movie.dao.UserMapper.BaseResultMap">
+<collection property="roles" column="id" select="com.linh.apps.cms_movie.dao.extend.RoleExtendMapper.selectByUserId"></collection>
+  </resultMap>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linh.apps.cms_movie.dao.extend.LogsExtendMapper">
+
+  <select id="selectAll" resultMap="LogsExtendResultMap">
+    select * from cms_logs
+  </select>
+  <select id="selectById"  resultMap="LogsExtendResultMap">
+    SELECT * FROM cms_logs
+    WHERE id = #{id}
+  </select>
+  <resultMap id="LogsExtendResultMap"
+             type="com.linh.apps.cms_movie.bean.extend.LogsExtend"
+             extends="com.linh.apps.cms_movie.dao.LogsMapper.BaseResultMap">
+    <association property="user"
+                 column="user_id"
+                 select="com.linh.apps.cms_movie.dao.UserMapper.selectByPrimaryKey"></association>
+
+  </resultMap>
+
+</mapper>

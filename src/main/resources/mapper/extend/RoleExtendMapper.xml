@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linh.apps.cms_movie.dao.extend.RoleExtendMapper">
+ <select id="selectByUserId" resultType="com.linh.apps.cms_movie.bean.Role">
+   SELECT r.*
+   FROM cms_role r,cms_user_role ur
+   WHERE r.id = ur.role_id
+   AND ur.user_id = #{id,jdbcType=BIGINT}
+ </select>
+
+    <select id="selectAll" resultMap="RoleExtendResultMap">
+    SELECT *
+    FROM cms_role
+  </select>
+
+    <resultMap
+            id="RoleExtendResultMap"
+            type="com.linh.apps.cms_movie.bean.extend.RoleExtend"
+           extends="com.linh.apps.cms_movie.dao.RoleMapper.BaseResultMap"
+    >
+        <collection property="privileges" column="id" select="com.linh.apps.cms_movie.dao.extend.PrivilegeExtendMapper.selectByRoleId"></collection>
+    </resultMap>
+
+</mapper>
